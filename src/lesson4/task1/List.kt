@@ -344,7 +344,7 @@ fun russian(n: Int): String {
     var iteration = 0
     val result = mutableListOf<String>()
     while (tNum > 0) {
-        result.add(0, getStringFromNumToTause(tNum % 1000, iteration))
+        result.add(0, receivingStringNumberForThousands(tNum % 1000, iteration))
         iteration++
         tNum /= 1000
 
@@ -352,10 +352,11 @@ fun russian(n: Int): String {
     return result.filter { it.isNotEmpty() }.joinToString(separator = " ")
 }
 
-fun getStringFromNumToTause(n: Int, numPos: Int): String {
+fun receivingStringNumberForThousands(n: Int, numPos: Int): String {
     val imPadRaz = arrayOf("тысяча", "миллион", "миллиард", "триллион")
     val rodPadRaz = arrayOf("тысячи", "миллиона", "миллиарда", "триллиона")
     val rodPadMRaz = arrayOf("тысяч", "миллионов", "миллиардов", "триллионов")
+
     val result = mutableListOf<String>()
     var thisNum = n
     var iteration = 0
@@ -389,6 +390,7 @@ fun getStringToNum(n: Int, iteration: Int, numPos: Int): String {
     val imPadDes = arrayOf("десять", "двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят", "семьдесят", "восемьдесят", "девяносто")
     val imPadSot = arrayOf("сто", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот", "восемьсот", "девятьсот")
     val podPadEd = arrayOf("одна", "две")
+
     val iterationMas = arrayOf(imPadEd, imPadDes, imPadSot)
     return when (n) {
         0 -> ""
